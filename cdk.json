@@ -36,6 +36,13 @@
                 "webhookUrlParameterName": "/WhatsNew/URL",
                 "rssUrl": {
                     "What’s new": "https://aws.amazon.com/about-aws/whats-new/recent/feed/"
+                },
+                "schedule": {
+                "minute": "0/15",
+                "hour": "*",
+                "day": "*",
+                "month": "*",
+                "year": "*"
                 }
             }
         },
