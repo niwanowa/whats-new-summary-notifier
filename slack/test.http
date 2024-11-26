@@ -1,0 +1,11 @@
+POST <トリガーURL>
+content-type: application/json
+
+{
+  "rss_title": "test title",
+  "rss_link": "test link",
+  "detail": "detail",
+  "summary": "summary",
+  "rss_time": "test time"
+}
+
