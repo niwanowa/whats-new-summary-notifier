@@ -16,16 +16,17 @@ dynamo = boto3.resource("dynamodb")
 table = dynamo.Table(DDB_TABLE_NAME)
 
 
-def recently_published(pubdate):
+def recently_published(pubdate, days):
     """Check if the publication date is recent
 
     Args:
         pubdate (str): The publication date and time
+        days (int): The number of days to consider as recent
     """
 
     elapsed_time = datetime.datetime.now() - str2datetime(pubdate)
     print(elapsed_time)
-    if elapsed_time.days > 7:
+    if elapsed_time.days > days:
         return False
 
     return True
@@ -69,16 +70,17 @@ def write_to_table(link, title, category, pubtime, notifier_name):
             print(e.message)
 
 
-def add_blog(rss_name, entries, notifier_name):
+def add_blog(rss_name, entries, notifier_name, days):
     """Add blog posts
 
     Args:
         rss_name (str): The category of the blog (RSS unit)
         entries (List): The list of blog posts
+        days (int): The number of days to consider as recent
     """
 
     for entry in entries:
-        if recently_published(entry["published"]):
+        if recently_published(entry["published"], days):
             write_to_table(
                 entry["link"],
                 entry["title"],
@@ -99,9 +101,9 @@ def handler(event, context):
         rss_result = feedparser.parse(rss_url)
         print(json.dumps(rss_result))
         print("RSS updated " + rss_result["feed"]["updated"])
-        if not recently_published(rss_result["feed"]["updated"]):
+        if not recently_published(rss_result["feed"]["updated"], 1):
             # Do not process RSS feeds that have not been updated for a certain period of time.
             # If you want to retrieve from the past, change this number of days and re-import.
             print("Skip RSS " + rss_name)
             continue
-        add_blog(rss_name, rss_result["entries"], notifier_name)
+        add_blog(rss_name, rss_result["entries"], notifier_name, 1)
