@@ -11,6 +11,8 @@ import dateutil.parser
 # CRAWL_BLOG_URL = json.loads(os.environ["RSS_URL"])
 # NOTIFIERS = json.loads(os.environ["NOTIFIERS"])
 
+RECENT_PUBLICATION_DAYS = 1
+
 DDB_TABLE_NAME = os.environ["DDB_TABLE_NAME"]
 dynamo = boto3.resource("dynamodb")
 table = dynamo.Table(DDB_TABLE_NAME)
@@ -101,9 +103,9 @@ def handler(event, context):
         rss_result = feedparser.parse(rss_url)
         print(json.dumps(rss_result))
         print("RSS updated " + rss_result["feed"]["updated"])
-        if not recently_published(rss_result["feed"]["updated"], 1):
+        if not recently_published(rss_result["feed"]["updated"], RECENT_PUBLICATION_DAYS):
             # Do not process RSS feeds that have not been updated for a certain period of time.
             # If you want to retrieve from the past, change this number of days and re-import.
             print("Skip RSS " + rss_name)
             continue
-        add_blog(rss_name, rss_result["entries"], notifier_name, 1)
+        add_blog(rss_name, rss_result["entries"], notifier_name, RECENT_PUBLICATION_DAYS)
