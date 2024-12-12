@@ -44,6 +44,21 @@
                 "month": "*",
                 "year": "*"
                 }
+            },
+            "hugo": {
+                "destination": "slack",
+                "summarizerName": "AwsSolutionsArchitectJapanese",
+                "webhookUrlParameterName": "/hugo/URL",
+                "rssUrl": {
+                    "hugo": "https://aws.amazon.com/about-aws/whats-new/recent/feed/"
+                },
+                "schedule": {
+                "minute": "0/15",
+                "hour": "*",
+                "day": "*",
+                "month": "*",
+                "year": "*"
+                }
             }
         },
         "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": true,
