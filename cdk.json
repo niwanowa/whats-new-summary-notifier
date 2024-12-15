@@ -50,7 +50,7 @@
                 "summarizerName": "AwsSolutionsArchitectJapanese",
                 "webhookUrlParameterName": "/hugo/URL",
                 "rssUrl": {
-                    "hugo": "https://aws.amazon.com/about-aws/whats-new/recent/feed/"
+                    "hugo": "https://github.com/gohugoio/hugo/releases.atom"
                 },
                 "schedule": {
                 "minute": "0/15",
