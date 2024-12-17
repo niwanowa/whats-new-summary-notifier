@@ -82,12 +82,13 @@ def add_blog(rss_name, entries, notifier_name, days):
     """
 
     for entry in entries:
-        if recently_published(entry["published"], days):
+        published = entry.get("published", entry.get("updated", ""))
+        if recently_published(published, days):
             write_to_table(
                 entry["link"],
                 entry["title"],
                 rss_name,
-                str2datetime(entry["published"]).isoformat(),
+                str2datetime(published).isoformat(),
                 notifier_name,
             )
         else:
