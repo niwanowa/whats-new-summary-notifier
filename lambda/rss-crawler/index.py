@@ -11,7 +11,7 @@ import dateutil.parser
 # CRAWL_BLOG_URL = json.loads(os.environ["RSS_URL"])
 # NOTIFIERS = json.loads(os.environ["NOTIFIERS"])
 
-RECENT_PUBLICATION_DAYS = 3
+RECENT_PUBLICATION_DAYS = 1
 
 DDB_TABLE_NAME = os.environ["DDB_TABLE_NAME"]
 dynamo = boto3.resource("dynamodb")
