@@ -11,7 +11,7 @@ import dateutil.parser
 # CRAWL_BLOG_URL = json.loads(os.environ["RSS_URL"])
 # NOTIFIERS = json.loads(os.environ["NOTIFIERS"])
 
-RECENT_PUBLICATION_DAYS = 1
+RECENT_PUBLICATION_DAYS = 3
 
 DDB_TABLE_NAME = os.environ["DDB_TABLE_NAME"]
 dynamo = boto3.resource("dynamodb")
@@ -82,12 +82,13 @@ def add_blog(rss_name, entries, notifier_name, days):
     """
 
     for entry in entries:
-        if recently_published(entry["published"], days):
+        published = entry.get("published", entry.get("updated", ""))
+        if recently_published(published, days):
             write_to_table(
                 entry["link"],
                 entry["title"],
                 rss_name,
-                str2datetime(entry["published"]).isoformat(),
+                str2datetime(published).isoformat(),
                 notifier_name,
             )
         else:
