@@ -1,5 +1,12 @@
 # Whats New Summary Notifier
 
+## 本家
+[Whats New Summary Notifier](https://github.com/aws-samples/whats-new-summary-notifier/tree/main)
+
+## 本家との差異
+
+ToDo : 元気になったら書く
+
 **Whats New Summary Notifier** は、AWS 最新情報 (What's New) などのウェブ記事に更新があった際に記事内容を Amazon Bedrock で要約し、Slack や Microsoft Teams への配信を行う生成 AI アプリケーションのサンプル実装です。
 
 <p align="center">
