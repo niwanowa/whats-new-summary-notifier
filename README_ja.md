@@ -8,8 +8,8 @@
 1. [RSSの取得期間を7日から1日へ変更](https://github.com/niwanowa/whats-new-summary-notifier/pull/2/files)
   lambdaは15分おきに動いてるのでこれでも過剰な気はする
 2. [モデルをClaude 3 Sonnet から Claude 3.5 Sonnetに変更](https://github.com/niwanowa/whats-new-summary-notifier/pull/7)
-3. リージョンをap-northeast-1に変更
-4. Atomフィードも読めるように変更
+3. [リージョンをap-northeast-1に変更](https://github.com/niwanowa/whats-new-summary-notifier/pull/5)
+4. [Atomフィードも読めるように変更](https://github.com/niwanowa/whats-new-summary-notifier/pull/14)
 
 **Whats New Summary Notifier** は、AWS 最新情報 (What's New) などのウェブ記事に更新があった際に記事内容を Amazon Bedrock で要約し、Slack や Microsoft Teams への配信を行う生成 AI アプリケーションのサンプル実装です。
 
